@@ -1,0 +1,3 @@
+/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/rebuild_cache.dir
+/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir
+/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/edit_cache.dir

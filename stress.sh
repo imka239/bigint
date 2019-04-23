@@ -1,19 +1,17 @@
 #!/bin/bash
 
-lvl="-O2"
 mode="out"
+tm="n"
 
 while [ -n "$1" ]
 do
     case "$1" in
-        -w) write="w";;
+        -sr) write="w";;
         -su) shutup="su";;
         -si) show_inp="si";;
         -rc) recompile="rc";;
-        -raw) mode="raw";;
-        -fsanitize) sanmem="-fsanitize=address";;
-        -O2) lvl="-O2";;
-        -O3) lvl="-O3";;
+        -nocheck) mode="raw";;
+        -time) tm="t";;
         --) shift
         break ;;
     esac
@@ -23,11 +21,11 @@ done
 if [ "$recompile" == "rc" ]
 then
     echo -e "\033[1;34mrecompiling source...\033[0m"
-    g++ "$lvl" -std=c++11 generator.cpp -o ./tmp/generator
-    g++ "$lvl" -std=c++11 checker.cpp -o ./tmp/checker
+    g++ -O2 -std=c++11 generator.cpp -o ./tmp/generator
+    g++ -O2 -std=c++11 checker.cpp -o ./tmp/checker
 
-    g++ -c "$lvl" -std=c++11 exec.cpp -o tmp/exec.o
-    g++ "$lvl" tmp/exec.o build/CMakeFiles/big_integer.dir/big_integer.cpp.o \
+    g++ -c -O2 -std=c++11 exec.cpp -o tmp/exec.o
+    g++ -O2 tmp/exec.o build/CMakeFiles/big_integer.dir/big_integer.cpp.o \
                    build/CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o \
                    build/CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o -o tmp/exec
 fi
@@ -46,12 +44,12 @@ do
         echo "$gen_test"
     fi
 
-    cpp_out=$(echo "$mode $2 $1 $gen_test" | tmp/exec)
+    cpp_out=$(echo "$mode $2 $1 $gen_test $tm" | tmp/exec)
     if [ "$mode" == "out" ]
     then
-        pyt_out=$(echo "$2 $1 $gen_test" | tmp/calc_out.py)
+        pyt_out=$(echo "$2 $1 $tm $gen_test" | tmp/calc_out.py)
     else
-        pyt_out=$(echo "$2 $1 $gen_test" | tmp/calc_raw.py)
+        pyt_out=$(echo "$2 $1 $tm $gen_test" | tmp/calc_raw.py)
     fi
     f=$(echo "$2 $cpp_out $pyt_out" | tmp/checker)
 

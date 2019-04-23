@@ -1,0 +1,1 @@
+/usr/bin/c++   -pthread -Wall -O3 -DNDEBUG   CMakeFiles/big_integer.dir/big_integer_testing.cpp.o CMakeFiles/big_integer.dir/big_integer.cpp.o CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o  -o big_integer 

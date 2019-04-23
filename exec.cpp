@@ -98,6 +98,9 @@ int main()
         cnt = execute_raw();
     auto te = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> rm = te - ts;
-    std::cerr << "CPP\t: " << std::fixed << rm.count() / cnt << '\n';
+    char c;
+    std::cin >> c;
+    if (c == 't')
+      std::cerr << "CPP\t: " << std::fixed << rm.count() / cnt << '\n';
     return 0;
 }
