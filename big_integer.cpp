@@ -2,35 +2,56 @@
 
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
-big_integer::big_integer(int32_t num) : _sign(num < 0) {
+const dig ten = 10;
+
+big_integer::big_integer(uint32_t num) : _sign(num <= 0) {
     if (num) {
-        _data.push_back((dig) (num < 0 ? num : -num));
+        _data.push_back((dig) ((num < 0) ? num : -num));
     }
 }
 
-big_integer::big_integer(std::string const &that) : _sign(that[0] == '-') {
-    int64_t carry = 0;
-    size_t ind = (that[0] == '-' ? 1 : 0);
+big_integer::big_integer(std::string const &s) : _sign(s[0] == '-') {
+    size_t ind = (s[0] == '-' || s[0] =='+' ? 1 : 0);
     //todo to take 8 letters
-    while (ind < that.size()) {
-        carry *= 10; carry += that[ind++] - '0';
+    while (ind < s.size()) {
+        *this *= ten;
+        *this += big_integer(s[ind] - '0');
     }
-    _data.push_back(1);
+    _sign = (_sign && (!_data.empty()));
 }
 
 big_integer& big_integer::operator+=(const big_integer &that) {
-    //todo
-    if (is_zero()) {
-        return *this = that;
+    if (_sign == that._sign) {
+        this->_add(that, 0);
+    } else {
+        _sign ^= 1;
+        (*this) -= that;
+        _sign ^= 1;
     }
-    return (*this);
+    return *this;
 }
 
 big_integer& big_integer::operator-=(const big_integer &that) {
-    //todo
-    if (is_zero()) {
-        return *this = that;
+    if (_sign == that._sign) {
+        int32_t flag = this->_compare(that);
+        if (flag == 0) {
+            _sign = false;
+            _data.resize(0);
+        } else {
+            if (flag < 0) {
+                *this = that._subtract(*this);
+                _sign = false;
+            } else {
+                *this = this->_subtract(that);
+                _sign = true;
+            }
+        }
+    } else {
+        _sign ^= 1;
+        (*this) += that;
+        _sign ^= 1;
     }
     return (*this);
 }
@@ -187,9 +208,23 @@ big_integer big_integer::operator~() const {
 }
 
 std::string to_string(const big_integer &a) {
-    return "0";
+    if (a.is_zero()) {
+        return "0";
+    }
+    //todo
+    big_integer changeable(a);
+    std::string ans = "";
+    while (!changeable.is_zero()) {
+        auto p = changeable._div(ten);
+        ans += std::to_string((p.second));
+        changeable = p.first;
+    }
+    ans += ((a._sign == 1) ? "-" : "");
+    std::reverse(ans.begin(), ans.end());
+    return ans;
 }
 
 bool big_integer::is_zero() const {
     return _data.empty() && !_sign;
 }
+
