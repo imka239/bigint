@@ -4,7 +4,6 @@
 
 #ifndef big_integer_hpp
 #define big_integer_hpp
-
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -13,7 +12,7 @@
 #include <stdint.h>
 #include "_core_arithmetics.hpp"
 
-#define SAFE_VECTOR
+#define STD_VECTOR
 
 #ifdef STD_VECTOR
 #include <vector>
@@ -22,11 +21,6 @@ using std::vector;
 #ifdef SAFE_VECTOR
 #include "vector.hpp"
 #endif
-#ifdef __UNSAFE_VECTOR__
-#include "__unsafe_vector.hpp"
-using __unsafe::vector;
-#endif
-
 class big_integer
 {
 public:

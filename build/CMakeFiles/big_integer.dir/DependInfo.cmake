@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_ASM_NASM
-  "/home/dzhiblavi/CLionProjects/big_integer/engine/_asm_vector.asm" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o"
+  "/home/dzhiblavi/CLionProjects/test/engine/_asm_vector.asm" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o"
   )
 set(CMAKE_ASM_NASM_COMPILER_ID "NASM")
 
@@ -13,11 +13,11 @@ set(CMAKE_ASM_NASM_COMPILER_ID "NASM")
 set(CMAKE_ASM_NASM_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/dzhiblavi/CLionProjects/big_integer/_core_arithmetics.cpp" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o"
-  "/home/dzhiblavi/CLionProjects/big_integer/big_integer.cpp" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/big_integer.cpp.o"
-  "/home/dzhiblavi/CLionProjects/big_integer/big_integer_testing.cpp" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/big_integer_testing.cpp.o"
-  "/home/dzhiblavi/CLionProjects/big_integer/gtest/gtest-all.cc" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o"
-  "/home/dzhiblavi/CLionProjects/big_integer/gtest/gtest_main.cc" "/home/dzhiblavi/CLionProjects/big_integer/build/CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o"
+  "/home/dzhiblavi/CLionProjects/test/_core_arithmetics.cpp" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o"
+  "/home/dzhiblavi/CLionProjects/test/big_integer.cpp" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/big_integer.cpp.o"
+  "/home/dzhiblavi/CLionProjects/test/big_integer_testing.cpp" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/big_integer_testing.cpp.o"
+  "/home/dzhiblavi/CLionProjects/test/gtest/gtest-all.cc" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o"
+  "/home/dzhiblavi/CLionProjects/test/gtest/gtest_main.cc" "/home/dzhiblavi/CLionProjects/test/build/CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

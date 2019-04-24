@@ -4,13 +4,11 @@
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o: ../_core_arithmetics.cpp
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o: ../_core_arithmetics.hpp
 
-CMakeFiles/big_integer.dir/big_integer.cpp.o: ../__unsafe_vector.hpp
 CMakeFiles/big_integer.dir/big_integer.cpp.o: ../_core_arithmetics.hpp
 CMakeFiles/big_integer.dir/big_integer.cpp.o: ../big_integer.cpp
 CMakeFiles/big_integer.dir/big_integer.cpp.o: ../big_integer.hpp
 CMakeFiles/big_integer.dir/big_integer.cpp.o: ../vector.hpp
 
-CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: ../__unsafe_vector.hpp
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: ../_core_arithmetics.hpp
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: ../big_integer.hpp
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: ../big_integer_testing.cpp

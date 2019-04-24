@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/clion-2019.1.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/dzhiblavi/CLion/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/clion-2019.1.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/dzhiblavi/CLion/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dzhiblavi/CLionProjects/big_integer
+CMAKE_SOURCE_DIR = /home/dzhiblavi/CLionProjects/test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug
+CMAKE_BINARY_DIR = /home/dzhiblavi/CLionProjects/test/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/big_integer.dir/depend.make
@@ -59,73 +59,73 @@ include CMakeFiles/big_integer.dir/flags.make
 
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.o: ../big_integer_testing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/big_integer.dir/big_integer_testing.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/big_integer_testing.cpp.o -c /home/dzhiblavi/CLionProjects/big_integer/big_integer_testing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/big_integer.dir/big_integer_testing.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/big_integer_testing.cpp.o -c /home/dzhiblavi/CLionProjects/test/big_integer_testing.cpp
 
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer.dir/big_integer_testing.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/big_integer/big_integer_testing.cpp > CMakeFiles/big_integer.dir/big_integer_testing.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/test/big_integer_testing.cpp > CMakeFiles/big_integer.dir/big_integer_testing.cpp.i
 
 CMakeFiles/big_integer.dir/big_integer_testing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer.dir/big_integer_testing.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/big_integer/big_integer_testing.cpp -o CMakeFiles/big_integer.dir/big_integer_testing.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/test/big_integer_testing.cpp -o CMakeFiles/big_integer.dir/big_integer_testing.cpp.s
 
 CMakeFiles/big_integer.dir/big_integer.cpp.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/big_integer.cpp.o: ../big_integer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/big_integer.dir/big_integer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/big_integer.cpp.o -c /home/dzhiblavi/CLionProjects/big_integer/big_integer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/big_integer.dir/big_integer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/big_integer.cpp.o -c /home/dzhiblavi/CLionProjects/test/big_integer.cpp
 
 CMakeFiles/big_integer.dir/big_integer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer.dir/big_integer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/big_integer/big_integer.cpp > CMakeFiles/big_integer.dir/big_integer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/test/big_integer.cpp > CMakeFiles/big_integer.dir/big_integer.cpp.i
 
 CMakeFiles/big_integer.dir/big_integer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer.dir/big_integer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/big_integer/big_integer.cpp -o CMakeFiles/big_integer.dir/big_integer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/test/big_integer.cpp -o CMakeFiles/big_integer.dir/big_integer.cpp.s
 
 CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o: ../gtest/gtest-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o -c /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest-all.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/gtest/gtest-all.cc.o -c /home/dzhiblavi/CLionProjects/test/gtest/gtest-all.cc
 
 CMakeFiles/big_integer.dir/gtest/gtest-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer.dir/gtest/gtest-all.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest-all.cc > CMakeFiles/big_integer.dir/gtest/gtest-all.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/test/gtest/gtest-all.cc > CMakeFiles/big_integer.dir/gtest/gtest-all.cc.i
 
 CMakeFiles/big_integer.dir/gtest/gtest-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer.dir/gtest/gtest-all.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest-all.cc -o CMakeFiles/big_integer.dir/gtest/gtest-all.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/test/gtest/gtest-all.cc -o CMakeFiles/big_integer.dir/gtest/gtest-all.cc.s
 
 CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o: ../gtest/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o -c /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest_main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/gtest/gtest_main.cc.o -c /home/dzhiblavi/CLionProjects/test/gtest/gtest_main.cc
 
 CMakeFiles/big_integer.dir/gtest/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer.dir/gtest/gtest_main.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest_main.cc > CMakeFiles/big_integer.dir/gtest/gtest_main.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/test/gtest/gtest_main.cc > CMakeFiles/big_integer.dir/gtest/gtest_main.cc.i
 
 CMakeFiles/big_integer.dir/gtest/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer.dir/gtest/gtest_main.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/big_integer/gtest/gtest_main.cc -o CMakeFiles/big_integer.dir/gtest/gtest_main.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/test/gtest/gtest_main.cc -o CMakeFiles/big_integer.dir/gtest/gtest_main.cc.s
 
 CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o: ../engine/_asm_vector.asm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building ASM_NASM object CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o"
-	/usr/bin/nasm $(ASM_NASM_INCLUDES) $(ASM_NASM_FLAGS) -f elf64 -o CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o /home/dzhiblavi/CLionProjects/big_integer/engine/_asm_vector.asm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building ASM_NASM object CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o"
+	/usr/bin/nasm $(ASM_NASM_INCLUDES) $(ASM_NASM_FLAGS) -f elf64 -o CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o /home/dzhiblavi/CLionProjects/test/engine/_asm_vector.asm
 
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o: CMakeFiles/big_integer.dir/flags.make
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o: ../_core_arithmetics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o -c /home/dzhiblavi/CLionProjects/big_integer/_core_arithmetics.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o -c /home/dzhiblavi/CLionProjects/test/_core_arithmetics.cpp
 
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/big_integer.dir/_core_arithmetics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/big_integer/_core_arithmetics.cpp > CMakeFiles/big_integer.dir/_core_arithmetics.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dzhiblavi/CLionProjects/test/_core_arithmetics.cpp > CMakeFiles/big_integer.dir/_core_arithmetics.cpp.i
 
 CMakeFiles/big_integer.dir/_core_arithmetics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/big_integer.dir/_core_arithmetics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/big_integer/_core_arithmetics.cpp -o CMakeFiles/big_integer.dir/_core_arithmetics.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dzhiblavi/CLionProjects/test/_core_arithmetics.cpp -o CMakeFiles/big_integer.dir/_core_arithmetics.cpp.s
 
 # Object files for target big_integer
 big_integer_OBJECTS = \
@@ -147,7 +147,7 @@ big_integer: CMakeFiles/big_integer.dir/engine/_asm_vector.asm.o
 big_integer: CMakeFiles/big_integer.dir/_core_arithmetics.cpp.o
 big_integer: CMakeFiles/big_integer.dir/build.make
 big_integer: CMakeFiles/big_integer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable big_integer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable big_integer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/big_integer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -160,6 +160,6 @@ CMakeFiles/big_integer.dir/clean:
 .PHONY : CMakeFiles/big_integer.dir/clean
 
 CMakeFiles/big_integer.dir/depend:
-	cd /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dzhiblavi/CLionProjects/big_integer /home/dzhiblavi/CLionProjects/big_integer /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug/CMakeFiles/big_integer.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dzhiblavi/CLionProjects/test/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dzhiblavi/CLionProjects/test /home/dzhiblavi/CLionProjects/test /home/dzhiblavi/CLionProjects/test/cmake-build-debug /home/dzhiblavi/CLionProjects/test/cmake-build-debug /home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles/big_integer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/big_integer.dir/depend
 

@@ -12,25 +12,16 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.12.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.12.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.12.1/CMakeSystem.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeASMCompiler.cmake.in"
   "/usr/share/cmake-3.12/Modules/CMakeASMInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeASM_NASMInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeCommonLanguageInclude.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeCompilerIdDetection.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeDetermineASMCompiler.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeDetermineASM_NASMCompiler.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeDetermineCompiler.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeDetermineCompilerId.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeFindBinUtils.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeInitializeConfigs.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeLanguageInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.12/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeTestASMCompiler.cmake"
-  "/usr/share/cmake-3.12/Modules/CMakeTestASM_NASMCompiler.cmake"
   "/usr/share/cmake-3.12/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/share/cmake-3.12/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.12/Modules/Compiler/GNU-CXX.cmake"
@@ -50,7 +41,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/3.12.1/CMakeASM_NASMCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

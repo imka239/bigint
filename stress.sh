@@ -2,6 +2,7 @@
 
 mode="out"
 tm="n"
+help="nohelp"
 
 while [ -n "$1" ]
 do
@@ -9,18 +10,29 @@ do
         -sr) write="w";;
         -su) shutup="su";;
         -si) show_inp="si";;
-        -rc) recompile="rc";;
-        -nocheck) mode="raw";;
+        --rc) recompile="rc";;
+        --nocheck) mode="raw";;
         -time) tm="t";;
+        -help) help="HELP";;
+        --help) help="HELP";;
         --) shift
         break ;;
     esac
     shift
 done
 
+if [ "$help" == "HELP" ]
+then
+    echo -e "\e[34musage : ./stress.sh [options...] -- \<operation> <test block size> <test block cnt> <1st arg (digits)> <2nd arg (digits)>\e[0m"
+    echo -e "\e[1;34mpossible options : \n  -help, --help - show this message \n  --rc - recompile source\n  --nocheck - run unchecked (fast) tests\
+        \n  -time - show timing info\n  -si - show input\n  -sr - show output\n  -su - shutup\e[0m"
+
+exit
+fi
+
 if [ "$recompile" == "rc" ]
 then
-    echo -e "\033[1;34mrecompiling source...\033[0m"
+    echo -e "\e[1;34mrecompiling source...\e[0m"
     g++ -O2 -std=c++11 generator.cpp -o ./tmp/generator
     g++ -O2 -std=c++11 checker.cpp -o ./tmp/checker
 
@@ -32,7 +44,7 @@ fi
 
 ok=0
 fl=0
-echo -e "\033[1;35mtesting mode : operation = ($1), block_size = ($2), blocks_cnt = ($3), arg lengths = ($4, $5)\033[0m"
+echo -e "\e[1;35mtesting mode : operation = ($1), block_size = ($2), blocks_cnt = ($3), arg lengths = ($4, $5)\e[0m"
 
 for (( i = 0; i < $3; i++ ))
 do
@@ -56,10 +68,10 @@ do
     if [ "$f" == "0" ]
     then
         ok=$[ok+$2]
-        pass="\033[32mpassed\033[0m"
+        pass="\e[32mpassed\e[0m"
     else
         fl=$[fl+$f]
-        pass="\033[31mfailed\033[0m"
+        pass="\e[31mfailed\e[0m"
     fi
 
     if [ "$shutup" != "su" ]

@@ -1,4 +1,6 @@
-/opt/clion-2019.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dzhiblavi/CLionProjects/big_integer
+/home/dzhiblavi/CLion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dzhiblavi/CLionProjects/test
+-- The ASM_NASM compiler identification is NASM
+-- Found assembler: /usr/bin/nasm
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/dzhiblavi/CLionProjects/big_integer/cmake-build-debug
+-- Build files have been written to: /home/dzhiblavi/CLionProjects/test/cmake-build-debug
