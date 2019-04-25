@@ -141,6 +141,9 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
     if (that._data.size() == 1) {
         auto ans = this->_div_on_dig(that._data[0]);
         ans.first._sign = (ans.first != 0 && (_sign ^ that._sign));
+        if (ans.second == 0) {
+            return std::make_pair(ans.first, big_integer());
+        }
         big_integer answer = big_integer(ans.second);
         answer._sign = (answer != 0 && _sign);
         return std::make_pair(ans.first, answer);
@@ -193,7 +196,7 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
     ans._sign = (ans != 0 && (_sign ^ that._sign));
     a /= r;
     a._sign = (a != 0 && _sign);
-    return std::make_pair(ans, b);
+    return std::make_pair(ans, a);
 }
 
 void big_integer::_delete_zero() {
