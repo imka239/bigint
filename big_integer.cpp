@@ -5,10 +5,20 @@
 
 const dig ten = 10;
 
-big_integer::big_integer(int64_t num) : _sign(num < 0) {
-    if (num) {
-        _data.push_back((dig) ((num > 0) ? num : -num));
+
+big_integer::big_integer(int32_t num) : _sign(num < 0) {
+    //if (-num == UINT64_MAX / 2 + 1) {
+    //    num--;
+    //}
+    if (num  == INT32_MIN) {
+        _data.push_back(UINT32_MAX / 2 + 1);
+    } else  if (num) {
+        _data.push_back((dig) ((num > 0) ? num : -(num)));
     }
+}
+
+big_integer::big_integer(dig num) : _sign(false) {
+    _data.push_back(num);
 }
 
 

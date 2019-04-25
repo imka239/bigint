@@ -9,7 +9,8 @@ using dig = uint64_t;
 struct big_integer {
     big_integer() = default;
     big_integer(const big_integer &) = default;
-    big_integer(int64_t);
+    big_integer(int32_t);
+    big_integer(dig);
     big_integer(std::string const&);
     ~big_integer() = default;
 
