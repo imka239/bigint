@@ -2,14 +2,13 @@
 
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 const dig ten = 10;
+const dig ten_in_pow_eight = 100000000;
 
 
 big_integer::big_integer(int32_t num) : _sign(num < 0) {
-    //if (-num == UINT64_MAX / 2 + 1) {
-    //    num--;
-    //}
     if (num  == INT32_MIN) {
         _data.push_back(UINT32_MAX / 2 + 1);
     } else  if (num) {
@@ -18,24 +17,40 @@ big_integer::big_integer(int32_t num) : _sign(num < 0) {
 }
 
 big_integer::big_integer(dig num) : _sign(false) {
-    _data.push_back(num);
+    if (num)
+        _data.push_back(num);
 }
 
 
 
 big_integer::big_integer(std::string const &s) {
     size_t ind = (s[0] == '-' || s[0] =='+' ? 1 : 0);
-    //todo to take 8 letters
-    while (ind < s.size()) {
-        *this *= ten;
-        *this += big_integer(s[ind++] - '0');
+    while (ind + 8 < s.size()) {
+        *this *= ten_in_pow_eight;
+        dig num = 0;
+        for (int i = 0; i < 8; i++) {
+            num *= 10;
+            num += s[ind + i] - '0';
+        }
+        *this += big_integer(num);
+        ind += 8;
     }
+
+    dig num = 0;
+    dig ten_in_pow_ind = 1;
+    for (size_t i = ind; i < s.size(); i++) {
+        num *= 10;
+        num += s[i] - '0';
+        ten_in_pow_ind *= 10;
+    }
+    *this *= ten_in_pow_ind;
+    *this += big_integer(num);
     _sign = ((s[0] == '-') && (!_data.empty()));
 }
 
 big_integer& big_integer::operator+=(const big_integer &that) {
     if (_sign == that._sign) {
-        this->_add(that, 0);
+        _add(that, 0);
     } else {
         _sign ^= 1;
         (*this) -= that;
@@ -49,7 +64,7 @@ big_integer& big_integer::operator+=(const big_integer &that) {
 
 big_integer& big_integer::operator-=(const big_integer &that) {
     if (_sign == that._sign) {
-        int32_t flag = this->_compare(that);
+        int32_t flag = _compare(that);
         if (flag == 0) {
             _sign = false;
             _data.resize(0);
@@ -58,7 +73,7 @@ big_integer& big_integer::operator-=(const big_integer &that) {
                 *this = that._subtract(*this);
                 _sign ^= 1;
             } else {
-                *this = this->_subtract(that);
+                *this = _subtract(that);
             }
         }
     } else {
@@ -70,7 +85,7 @@ big_integer& big_integer::operator-=(const big_integer &that) {
 }
 
 big_integer& big_integer::operator*=(const big_integer &that) {
-    size_t sz = _data.size();
+    size_t sz = _sz();
 
     big_integer ans;
 
@@ -85,22 +100,22 @@ big_integer& big_integer::operator*=(const big_integer &that) {
 }
 
 big_integer& big_integer::operator/=(const big_integer &that) {
-    *this = this->_div_on_bigint(that).first;
+    *this = _div_on_bigint(that).first;
     return (*this);
 }
 
 big_integer& big_integer::operator%=(const big_integer &that) {
-    *this = this->_div_on_bigint(that).second;
+    *this = _div_on_bigint(that).second;
     return (*this);
 }
 
 big_integer& big_integer::operator&=(const big_integer &that) {
     big_integer ans(that);
-    size_t sz = std::max(_data.size(), that._data.size());
+    size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
     for (size_t i = 0; i < sz; i++) {
-        this->_data[i] = this->_data[i] & ans._data[i];
+        _data[i] = _data[i] & ans._data[i];
     }
     _sign = _sign & that._sign;
     _delete_zero();
@@ -112,11 +127,11 @@ big_integer& big_integer::operator&=(const big_integer &that) {
 
 big_integer& big_integer::operator|=(const big_integer &that) {
     big_integer ans(that);
-    size_t sz = std::max(_data.size(), that._data.size());
+    size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
     for (size_t i = 0; i < sz; i++) {
-        this->_data[i] = this->_data[i] | ans._data[i];
+        _data[i] = _data[i] | ans._data[i];
     }
     _sign = _sign | that._sign;
     _delete_zero();
@@ -126,11 +141,11 @@ big_integer& big_integer::operator|=(const big_integer &that) {
 
 big_integer& big_integer::operator^=(const big_integer &that) {
     big_integer ans(that);
-    size_t sz = std::max(_data.size(), that._data.size());
+    size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
     for (size_t i = 0; i < sz; i++) {
-        this->_data[i] = this->_data[i] ^ ans._data[i];
+        _data[i] = _data[i] ^ ans._data[i];
     }
     _sign = _sign ^ that._sign;
     _delete_zero();
@@ -151,7 +166,7 @@ big_integer& big_integer::operator<<=(size_t sz) {
 big_integer& big_integer::operator>>=(size_t sz) {
     dig mod = sz % 64;
     dig div = sz / 64;
-    *this /= (((dig)1) << mod);
+    *this /= (((dig) 1) << mod);
     _shift_right(div);
     _delete_zero();
     if (_sign) {
@@ -286,8 +301,8 @@ void big_integer::_delete_minus() {
     if (!_sign || is_zero()) {
         return;
     }
-    for (size_t &i : _data) {
-        i = ~i;
+    for (size_t i = 0; i < _sz(); i++) {
+        _data[i] = ~_data[i];
     }
     _sign = false;
     (*this) += 1;
@@ -301,7 +316,18 @@ void big_integer::_append_minus() {
     _sign = false;
     (*this) -= 1;
     _sign = true;
-    for (size_t &i : _data) {
-        i = ~i;
+    for (size_t i = 0; i < _sz(); i++) {
+        _data[i] = ~_data[i];
     }
+}
+
+std::istream& operator>>(std::istream& os, big_integer& bi) {
+    std::string s;
+    std::cin >> s;
+    bi = big_integer(s);
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, big_integer const& bi) {
+    return os << to_string(bi);
 }

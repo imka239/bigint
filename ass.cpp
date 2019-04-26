@@ -4,11 +4,17 @@
 
 #include <algorithm>
 #include <cstring>
+#include <stdexcept>
+#include <iostream>
 #include "big_integer.h"
 
 
+size_t big_integer::_sz() const {
+    return _data.size();
+}
+
 dig big_integer::_get_i(size_t ind) const {
-    if (ind < _data.size()) {
+    if (ind < _sz()) {
         return _data[ind];
     } else {
         return 0;
@@ -16,11 +22,11 @@ dig big_integer::_get_i(size_t ind) const {
 }
 
 void big_integer::_add(const big_integer& that, const size_t place) {
-    bool carry = false;
-    size_t sz = std::max(_data.size(), (that._data.size() + place));
+    size_t carry = 0;
+    size_t sz = std::max(_sz(), (that._sz() + place));
     _data.resize(sz);
     for (size_t i = 0; i < sz - place; i++) {
-        dig bi1 = this->_get_i(i + place);
+        dig bi1 = _get_i(i + place);
         dig bi2 = that._get_i(i);
         __asm__ (
         "xor %%rdx, %%rdx;"
@@ -42,12 +48,12 @@ void big_integer::_add(const big_integer& that, const size_t place) {
 
 big_integer big_integer::_subtract(const big_integer & that) const {
     big_integer ans;
-    ans._sign = this->_sign;
-    bool carry = false;
+    ans._sign = _sign;
+    size_t carry = 0;
     size_t sz = _data.size();
     ans._data.reserve(sz);
     for (size_t i = 0; i < sz; i++) {
-        dig bi1 = this->_get_i(i);
+        dig bi1 = _get_i(i);
         dig bi2 = that._get_i(i);
         dig d = 0;
         __asm__ (
@@ -67,13 +73,13 @@ big_integer big_integer::_subtract(const big_integer & that) const {
 }
 
 int32_t big_integer::_compare(const big_integer &that) const {
-    if (_data.size() != that._data.size()) {
-        return ((that._data.size() > _data.size()) ? -1 : 1);
+    if (_sz() != that._sz()) {
+        return ((that._sz() > _sz()) ? -1 : 1);
     }
     if (_data.empty()) {
         return 0;
     }
-    for (size_t i = _data.size() - 1; i >= 0; i--) {
+    for (size_t i = _sz() - 1; i >= 0; i--) {
         if (_data[i] != that._data[i]) {
             return ((that._data[i] > _data[i]) ? -1 : 1);
         }
@@ -86,12 +92,10 @@ int32_t big_integer::_compare(const big_integer &that) const {
 
 big_integer big_integer::_mul(dig val) const {
     dig carry = 0;
-    size_t sz = _data.size();
-
+    size_t sz = _sz();
     big_integer ans;
-    ans._sign = this->_sign;
+    ans._sign = _sign;
     ans._data.reserve(sz + 1);
-
     for (size_t i = 0; i < sz; i++) {
         dig bi1 = _get_i(i);
         dig d;
@@ -107,18 +111,15 @@ big_integer big_integer::_mul(dig val) const {
     if (carry != 0) {
         ans._data.push_back(carry);
     }
-
     ans._delete_zero();
     return ans;
 }
 
 std::pair<big_integer, dig> big_integer::_div_on_dig(dig val) const {
     dig carry = 0;
-    size_t sz = _data.size();
-
+    size_t sz = _sz();
     big_integer ans;
-    ans._sign = this->_sign;
-
+    ans._sign = _sign;
     for (size_t i = 0; i < sz; i++) {
         dig d1 = _get_i(sz - i - 1);
         dig d;
@@ -136,10 +137,10 @@ std::pair<big_integer, dig> big_integer::_div_on_dig(dig val) const {
 
 std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_integer &that) const {
     if (that._data.empty()) {
-        throw new error_t();
+        throw std::runtime_error("division by zero");
     }
-    if (that._data.size() == 1) {
-        auto ans = this->_div_on_dig(that._data[0]);
+    if (that._sz() == 1) {
+        auto ans = _div_on_dig(that._data[0]);
         ans.first._sign = (ans.first != 0 && (_sign ^ that._sign));
         if (ans.second == 0) {
             return std::make_pair(ans.first, big_integer());
@@ -148,8 +149,7 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
         answer._sign = (answer != 0 && _sign);
         return std::make_pair(ans.first, answer);
     }
-
-    if (this->_compare(that) < 0) {
+    if (_compare(that) < 0) {
         return std::make_pair(big_integer(), *this);
     }
     big_integer a(*this);
@@ -157,8 +157,8 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
     a._sign = false; b._sign = false;
 
     dig r = _normalizer(a, b);
-    size_t n = b._data.size();
-    size_t m = a._data.size() - n;
+    size_t n = b._sz();
+    size_t m = a._sz() - n;
     big_integer ans;
     ans._data.reserve(m);
     big_integer betta_in_pow_j(b);
@@ -168,25 +168,25 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
         ans._data.push_back(1);
         a -= betta_in_pow_j;
     }
-
     betta_in_pow_j._shift_right(1);
-
-    for (size_t i = m - 1; i >= 0; betta_in_pow_j._shift_right(1), i--) {
+    for (size_t i = m; i-- > 0; betta_in_pow_j._shift_right(1)) {
         big_integer q;
         q._data.push_back(a._get_i(n + i - 1));
         q._data.push_back(a._get_i(n + i));
         q = q._div_on_dig(b._get_i(n - 1)).first;
-        if (q._data.size() > 1) {
+        if (q._sz() > 1) {
             q._data.resize(0);
             q._data.push_back(UINT64_MAX);
         }
-
         a -= betta_in_pow_j * q;
         while(a < 0) {
             q -= 1;
             a += betta_in_pow_j;
         }
-        ans._data.push_back(q._data[0]);
+        if (!q._data.empty())
+            ans._data.push_back(q._data[0]);
+        else
+            ans._data.push_back(0);
         if (i == 0) {
             break;
         }
@@ -200,7 +200,7 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
 }
 
 void big_integer::_delete_zero() {
-    size_t i = _data.size();
+    size_t i = _sz();
     while (i > 0 && _data[i - 1] == 0) {
         i--;
     }
@@ -214,24 +214,23 @@ void big_integer::_shift_left(size_t n) {
     if (n == 0) {
         return;
     }
-    _data.resize(_data.size() + n);
-    memmove(_data.data() + n, _data.data(), sizeof(dig) * (_data.size() - n));
+    _data.resize(_sz() + n);
+    memmove(_data.data() + n, _data.data(), sizeof(dig) * (_sz() - n));
     memset(_data.data(), 0, sizeof(dig) * n);
 }
-
 
 void big_integer::_shift_right(size_t n) {
     if (n == 0) {
         return;
     }
-    memmove(_data.data(), _data.data() + n, sizeof(dig) * (_data.size() - n));
-    _data.resize(_data.size() - n);
+    memmove(_data.data(), _data.data() + n, sizeof(dig) * (_sz() - n));
+    _data.resize(_sz() - n);
 }
 
 dig big_integer::_normalizer(big_integer &a, big_integer &b) const {
     big_integer x = big_integer(1);
     x._shift_left(1);
-    x = x._div_on_dig(b._data[b._data.size() - 1] + 1).first;
+    x = x._div_on_dig(b._data[b._sz() - 1] + 1).first;
     dig ans = x._data[0];
     a *= ans;
     b *= ans;

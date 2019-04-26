@@ -52,6 +52,9 @@ struct big_integer {
     friend big_integer operator^(big_integer, const big_integer&);
     big_integer& operator<<=(size_t);
     friend big_integer operator<<(big_integer, size_t);
+    friend std::ostream& operator<<(std::ostream& os, big_integer const&);
+    friend std::istream& operator>>(std::istream& os, big_integer& bi);
+
     big_integer& operator>>=(size_t);
     friend big_integer operator>>(big_integer, size_t);
 
@@ -62,6 +65,7 @@ private:
     std::vector<dig> _data;
     bool _sign = false;
 
+    size_t _sz() const;
     dig _get_i(size_t) const;
     void _add(const big_integer&, size_t); //for multiply
     big_integer _subtract(const big_integer&) const;
