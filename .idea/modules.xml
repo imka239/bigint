@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/big_integer_release.iml" filepath="$PROJECT_DIR$/.idea/big_integer_release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/imka.iml" filepath="$PROJECT_DIR$/.idea/imka.iml" />
     </modules>
   </component>
 </project>

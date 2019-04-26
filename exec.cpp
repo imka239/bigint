@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include <ctime>
 #include <chrono>
-#include "big_integer.hpp"
+#include "big_integer.h"
 
 size_t execute_raw()
 {

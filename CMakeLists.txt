@@ -10,8 +10,7 @@ add_executable(big_integer
 #        main.cpp
                 big_integer_testing.cpp
                 big_integer.cpp
+                ass.cpp
                 gtest/gtest-all.cc
-                gtest/gtest_main.cc
-                engine/_asm_vector.asm
-                _core_arithmetics.cpp
-                vector.hpp)
+        gtest/gtest_main.cc
+        )

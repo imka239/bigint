@@ -1,13 +1,6 @@
-/*
-    @author dzhiblavi
- */
-
-#include "big_integer.hpp"
-
+#include "big_integer.h"
+#include <iostream>
 int main() {
-    big_integer a("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-    big_integer b("100000000000000000000000000000000000000");
-    big_integer c("100000000000000000000000000000000000000000000000000000");
-    std::cerr << a / b << '\n';
+    std::cout << (2 + big_integer(2));
     return 0;
 }

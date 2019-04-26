@@ -1,3 +1,3 @@
-/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles/big_integer.dir
-/home/dzhiblavi/CLionProjects/test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/CMakeFiles/big_integer.dir

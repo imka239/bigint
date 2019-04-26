@@ -8,110 +8,99 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/dzhiblavi/CLionProjects/test/cmake-build-debug"/>
+				<Option working_dir="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/dzhiblavi/CLionProjects/test/cmake-build-debug"/>
+				<Option working_dir="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="big_integer">
-				<Option output="/home/dzhiblavi/CLionProjects/test/cmake-build-debug/big_integer" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/dzhiblavi/CLionProjects/test/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/8"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
-					<Add directory="/usr/include/c++/8/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 big_integer"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="big_integer/fast">
-				<Option output="/home/dzhiblavi/CLionProjects/test/cmake-build-debug/big_integer" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/dzhiblavi/CLionProjects/test/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/8"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
-					<Add directory="/usr/include/c++/8/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 big_integer/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/dzhiblavi/CLionProjects/test/cmake-build-debug"/>
+				<Option working_dir="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/dzhiblavi/CLionProjects/test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="big_integer">
+				<Option output="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/big_integer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 big_integer"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="big_integer/fast">
+				<Option output="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/big_integer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 big_integer/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/_core_arithmetics.cpp">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/ass.cpp">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/_core_arithmetics.hpp">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/big_integer.cpp">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/big_integer.cpp">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/big_integer.h">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/big_integer.hpp">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/big_integer_testing.cpp">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/big_integer_testing.cpp">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/gtest/gtest-all.cc">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/engine/_asm_vector.asm">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/gtest/gtest_main.cc">
 			<Option target="big_integer"/>
 		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/gtest/gtest-all.cc">
-			<Option target="big_integer"/>
-		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/gtest/gtest_main.cc">
-			<Option target="big_integer"/>
-		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/vector.hpp">
-			<Option target="big_integer"/>
-		</Unit>
-		<Unit filename="/home/dzhiblavi/CLionProjects/test/CMakeLists.txt">
+		<Unit filename="/Users/ibragimdzhiblavi/Documents/prog/cpp/clion/imka/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
