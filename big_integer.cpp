@@ -154,8 +154,8 @@ big_integer& big_integer::operator^=(const big_integer &that) {
 }
 
 big_integer& big_integer::operator<<=(size_t sz) {
-    dig mod = sz % 64;
-    dig div = sz / 64;
+    dig mod = sz % 32;
+    dig div = sz / 32;
     *this *= (((dig) 1) << mod);
     _shift_left(div);
     _delete_zero();
@@ -164,8 +164,8 @@ big_integer& big_integer::operator<<=(size_t sz) {
 
 
 big_integer& big_integer::operator>>=(size_t sz) {
-    dig mod = sz % 64;
-    dig div = sz / 64;
+    dig mod = sz % 32;
+    dig div = sz / 32;
     *this /= (((dig) 1) << mod);
     _shift_right(div);
     _delete_zero();

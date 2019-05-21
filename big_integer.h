@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-using dig = uint64_t;
+using dig = uint32_t;
 
 struct big_integer {
     big_integer() = default;
@@ -67,7 +67,7 @@ private:
 
     size_t _sz() const;
     dig _get_i(size_t) const;
-    void _add(const big_integer&, size_t); //for multiply
+    void _add(const big_integer&, size_t);
     big_integer _subtract(const big_integer&) const;
     big_integer _mul(dig) const;
     std::pair<big_integer, dig> _div_on_dig(dig) const;
