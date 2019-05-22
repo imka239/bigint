@@ -32,7 +32,7 @@ big_integer::big_integer(std::string const &s) {
             num *= 10;
             num += s[ind + i] - '0';
         }
-        *this += big_integer(num);
+        *this += num;
         ind += 8;
     }
 
@@ -70,8 +70,10 @@ big_integer& big_integer::operator-=(const big_integer &that) {
             _data.resize(0);
         } else {
             if (flag < 0) {
-                *this = that._subtract(*this);
-                _sign ^= 1;
+                big_integer tmp(that);
+                tmp -= *this;
+                tmp._sign ^= 1;
+                std::swap(*this, tmp);
             } else {
                 *this = _subtract(that);
             }
@@ -85,17 +87,18 @@ big_integer& big_integer::operator-=(const big_integer &that) {
 }
 
 big_integer& big_integer::operator*=(const big_integer &that) {
-    size_t sz = _sz();
+    size_t sz = that._sz();
 
     big_integer ans;
 
+    //std::vector<dig> answer(_sz() + that._sz());
     for (size_t i = 0; i < sz; i++) {
-        ans._add(that._mul(_data[i]), i);
+        ans._add(_mul(that._data[i]), i);
     }
 
     ans._delete_zero();
     ans._sign = (ans != 0) && (_sign ^ that._sign);
-    *this = ans;
+    std::swap(ans, *this);
     return (*this);
 }
 

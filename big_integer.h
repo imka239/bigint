@@ -68,7 +68,7 @@ private:
     size_t _sz() const;
     dig _get_i(size_t) const;
     void _add(const big_integer&, size_t);
-    big_integer _subtract(const big_integer&) const;
+    big_integer& _subtract(const big_integer&);
     big_integer _mul(dig) const;
     big_integer& _div_on_dig(dig, dig&);
     big_integer& _div_on_bigint(const big_integer &that, big_integer&);

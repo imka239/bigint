@@ -37,25 +37,21 @@ void big_integer::_add(const big_integer& that, const size_t place) {
     _delete_zero();
 }
 
-big_integer big_integer::_subtract(const big_integer & that) const {
-    big_integer ans;
-    ans._sign = _sign;
+big_integer& big_integer::_subtract(const big_integer & that) {
     size_t carry = 0;
     size_t sz = _data.size();
-    ans._data.reserve(sz);
     for (size_t i = 0; i < sz; i++) {
         dig bi1 = _get_i(i);
         dig bi2 = that._get_i(i);
-        ans._data.push_back(bi1 - bi2 - carry);
+        _data[i] = (bi1 - bi2 - carry);
         size_t newcarry = 0;
         if (bi1 < bi2 + carry) {
             newcarry = 1;
         }
         carry = newcarry;
     }
-
-    ans._delete_zero();
-    return ans;
+    _delete_zero();
+    return *this;
 }
 
 int32_t big_integer::_compare(const big_integer &that) const {
@@ -109,7 +105,8 @@ big_integer& big_integer::_div_on_dig(dig val, dig& rm) {
     std::reverse(ans._data.begin(), ans._data.end());
     ans._delete_zero();
     rm = carry;
-    return *this = ans;
+    std::swap(*this, ans);
+    return *this;
 }
 
 big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& remind) {
@@ -180,7 +177,7 @@ big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& r
     a /= r;
     a._sign = (a != 0 && _sign);
     remind = a;
-    *this = ans;
+    std::swap(*this, ans);
     return *this;
 }
 
