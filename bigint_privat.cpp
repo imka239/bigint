@@ -28,19 +28,12 @@ void big_integer::_add(const big_integer& that, const size_t place) {
     for (size_t i = 0; i < sz - place; i++) {
         dig bi1 = _get_i(i + place);
         dig bi2 = that._get_i(i);
-        _data[i + place] = bi2 + bi1 + carry;
-        size_t newcarry = 0;
-        if (_data[i + place] < bi1 || _data[i + place] < bi2) {
-            newcarry = 1;
-        }
-        carry = newcarry;
-
+        uint64_t d = bi2;
+        d = d + bi1 + carry;
+        _data[i + place] = d;
+        carry = d >> 32;
     }
-
-    if (carry) {
-        _data.push_back((dig) carry);
-    }
-
+    _data.push_back((dig) carry);
     _delete_zero();
 }
 
@@ -97,14 +90,12 @@ big_integer big_integer::_mul(dig val) const {
         carry = (d >> 32);
         ans._data.push_back(d);
     }
-    if (carry != 0) {
-        ans._data.push_back(carry);
-    }
+    ans._data.push_back(carry);
     ans._delete_zero();
     return ans;
 }
 
-std::pair<big_integer, dig> big_integer::_div_on_dig(dig val) const {
+big_integer& big_integer::_div_on_dig(dig val, dig& rm) {
     uint64_t carry = 0;
     size_t sz = _sz();
     big_integer ans;
@@ -117,25 +108,31 @@ std::pair<big_integer, dig> big_integer::_div_on_dig(dig val) const {
     }
     std::reverse(ans._data.begin(), ans._data.end());
     ans._delete_zero();
-    return std::make_pair(ans, carry);
+    rm = carry;
+    return *this = ans;
 }
 
-std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_integer &that) const {
+big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& remind) {
     if (that._data.empty()) {
         throw std::runtime_error("division by zero");
     }
     if (that._sz() == 1) {
-        auto ans = _div_on_dig(that._data[0]);
-        ans.first._sign = (ans.first != 0 && (_sign ^ that._sign));
-        if (ans.second == 0) {
-            return std::make_pair(ans.first, big_integer());
+        dig remainder = 0;
+        bool sign = _sign;
+        _div_on_dig(that._data[0], remainder);
+        _sign = (*this != 0 && (_sign ^ that._sign));
+        if (remainder == 0) {
+            remind = 0;
+            return *this;
         }
-        big_integer answer = big_integer(ans.second);
-        answer._sign = (answer != 0 && _sign);
-        return std::make_pair(ans.first, answer);
+        remind = remainder;
+        remind._sign = (remind != 0 && sign);
+        return *this;
     }
     if (_compare(that) < 0) {
-        return std::make_pair(big_integer(), *this);
+        remind = *this;
+        *this = 0;
+        return *this;
     }
     big_integer a(*this);
     big_integer b(that);
@@ -158,7 +155,8 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
         big_integer q;
         q._data.push_back(a._get_i(n + i - 1));
         q._data.push_back(a._get_i(n + i));
-        q = q._div_on_dig(b._get_i(n - 1)).first;
+        dig remainder = 0;
+        q._div_on_dig(b._get_i(n - 1), remainder);
         if (q._sz() > 1) {
             q._data.resize(0);
             q._data.push_back(UINT32_MAX);
@@ -181,7 +179,9 @@ std::pair<big_integer, big_integer> big_integer::_div_on_bigint(const big_intege
     ans._sign = (ans != 0 && (_sign ^ that._sign));
     a /= r;
     a._sign = (a != 0 && _sign);
-    return std::make_pair(ans, a);
+    remind = a;
+    *this = ans;
+    return *this;
 }
 
 void big_integer::_delete_zero() {
@@ -215,7 +215,8 @@ void big_integer::_shift_right(size_t n) {
 dig big_integer::_normalizer(big_integer &a, big_integer &b) const {
     big_integer x = big_integer(1);
     x._shift_left(1);
-    x = x._div_on_dig(b._data[b._sz() - 1] + 1).first;
+    dig remainder = 0;
+    x = x._div_on_dig(b._data[b._sz() - 1] + 1, remainder);
     dig ans = x._data[0];
     a *= ans;
     b *= ans;

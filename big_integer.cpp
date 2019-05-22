@@ -100,13 +100,16 @@ big_integer& big_integer::operator*=(const big_integer &that) {
 }
 
 big_integer& big_integer::operator/=(const big_integer &that) {
-    *this = _div_on_bigint(that).first;
+    big_integer remind = 0;
+    _div_on_bigint(that, remind);
     return (*this);
 }
 
 big_integer& big_integer::operator%=(const big_integer &that) {
-    *this = _div_on_bigint(that).second;
-    return (*this);
+    big_integer remind = 0;
+    _div_on_bigint(that, remind);
+    *this = remind;
+    return *this;
 }
 
 big_integer& big_integer::operator&=(const big_integer &that) {
@@ -284,9 +287,9 @@ std::string to_string(const big_integer &a) {
     big_integer changeable(a);
     std::string ans = "";
     while (!changeable.is_zero()) {
-        auto p = changeable._div_on_dig(ten);
-        ans += std::to_string((p.second));
-        changeable = p.first;
+        dig remainder = 0;
+        changeable._div_on_dig(ten, remainder);
+        ans += std::to_string(remainder);
     }
     ans += ((a._sign == 1) ? "-" : "");
     std::reverse(ans.begin(), ans.end());

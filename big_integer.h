@@ -70,8 +70,8 @@ private:
     void _add(const big_integer&, size_t);
     big_integer _subtract(const big_integer&) const;
     big_integer _mul(dig) const;
-    std::pair<big_integer, dig> _div_on_dig(dig) const;
-    std::pair<big_integer, big_integer> _div_on_bigint(const big_integer &that) const;
+    big_integer& _div_on_dig(dig, dig&);
+    big_integer& _div_on_bigint(const big_integer &that, big_integer&);
     int32_t _compare(const big_integer &that) const;
     dig _normalizer(big_integer&, big_integer&) const;
     void _delete_zero();
