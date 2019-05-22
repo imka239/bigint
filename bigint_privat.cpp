@@ -216,7 +216,7 @@ dig big_integer::_normalizer(big_integer &a, big_integer &b) const {
     big_integer x = big_integer(1);
     x._shift_left(1);
     dig remainder = 0;
-    x = x._div_on_dig(b._data[b._sz() - 1] + 1, remainder);
+    x._div_on_dig(b._data[b._sz() - 1] + 1, remainder);
     dig ans = x._data[0];
     a *= ans;
     b *= ans;

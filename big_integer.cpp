@@ -44,7 +44,7 @@ big_integer::big_integer(std::string const &s) {
         ten_in_pow_ind *= 10;
     }
     *this *= ten_in_pow_ind;
-    *this += big_integer(num);
+    *this += num;
     _sign = ((s[0] == '-') && (!_data.empty()));
 }
 
