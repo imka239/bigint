@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "mega_vector.h"
 
 using dig = uint32_t;
 
@@ -62,7 +63,7 @@ struct big_integer {
     bool is_zero() const;
 
 private:
-    std::vector<dig> _data;
+    mega_vector<dig> _data;
     bool _sign = false;
 
     size_t _sz() const;

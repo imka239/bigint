@@ -196,17 +196,25 @@ void big_integer::_shift_left(size_t n) {
     if (n == 0) {
         return;
     }
-    _data.resize(_sz() + n);
-    memmove(_data.data() + n, _data.data(), sizeof(dig) * (_sz() - n));
-    memset(_data.data(), 0, sizeof(dig) * n);
+    size_t old = _sz();
+    _data.resize(old + n);
+    for (size_t i = old - 1; old != 0 && i + 1 > i; i--) {
+        _data[i + n] = _data[i];
+    }
+    for (size_t i = n - 1; i + 1 > i; i--) {
+        _data[i] = 0;
+    }
 }
 
 void big_integer::_shift_right(size_t n) {
     if (n == 0) {
         return;
     }
-    memmove(_data.data(), _data.data() + n, sizeof(dig) * (_sz() - n));
-    _data.resize(_sz() - n);
+    size_t  new_sz = _sz() - n;
+    for (size_t i = 0; i < new_sz; i++) {
+        _data[i] = _data[i + n];
+    }
+    _data.resize(new_sz);
 }
 
 dig big_integer::_normalizer(big_integer &a, big_integer &b) const {
