@@ -22,6 +22,7 @@ dig big_integer::_get_i(size_t ind) const {
 }
 
 void big_integer::_add(const big_integer& that, const size_t place) {
+    _data.make_new();
     size_t carry = 0;
     size_t sz = std::max(_sz(), (that._sz() + place));
     _data.resize(sz);
@@ -102,7 +103,9 @@ big_integer& big_integer::_div_on_dig(dig val, dig& rm) {
         carry = d % val;
         ans._data.push_back(d / val);
     }
-    std::reverse(ans._data.begin(), ans._data.end());
+    for (size_t i = 0; i < ans._sz() / 2; i++) {
+        std::swap(ans._data[i], ans._data[ans._sz() - i - 1]);
+    }
     ans._delete_zero();
     rm = carry;
     std::swap(*this, ans);
@@ -133,6 +136,8 @@ big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& r
     }
     big_integer a(*this);
     big_integer b(that);
+    a._data.make_new();
+    b._data.make_new();
     a._sign = false; b._sign = false;
 
     dig r = _normalizer(a, b);
@@ -141,6 +146,7 @@ big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& r
     big_integer ans;
     ans._data.reserve(m);
     big_integer betta_in_pow_j(b);
+    betta_in_pow_j._data.make_new();
     betta_in_pow_j._shift_left(m);
 
     if (betta_in_pow_j <= a) {
@@ -171,7 +177,9 @@ big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& r
             break;
         }
     }
-    std::reverse(ans._data.begin(), ans._data.end());
+    for (size_t i = 0; i < ans._sz() / 2; i++) {
+        std::swap(ans._data[i], ans._data[ans._sz() - i - 1]);
+    }
     ans._delete_zero();
     ans._sign = (ans != 0 && (_sign ^ that._sign));
     a /= r;
@@ -182,6 +190,7 @@ big_integer& big_integer::_div_on_bigint(const big_integer &that, big_integer& r
 }
 
 void big_integer::_delete_zero() {
+    _data.make_new();
     size_t i = _sz();
     while (i > 0 && _data[i - 1] == 0) {
         i--;
@@ -196,6 +205,7 @@ void big_integer::_shift_left(size_t n) {
     if (n == 0) {
         return;
     }
+    _data.make_new();
     size_t old = _sz();
     _data.resize(old + n);
     for (size_t i = old - 1; old != 0 && i + 1 > i; i--) {
@@ -210,6 +220,7 @@ void big_integer::_shift_right(size_t n) {
     if (n == 0) {
         return;
     }
+    _data.make_new();
     size_t  new_sz = _sz() - n;
     for (size_t i = 0; i < new_sz; i++) {
         _data[i] = _data[i + n];

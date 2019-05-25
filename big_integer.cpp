@@ -8,12 +8,23 @@ const dig ten = 10;
 const dig ten_in_pow_eight = 100000000;
 
 
-big_integer::big_integer(int32_t num) : _sign(num < 0) {
-    if (num  == INT32_MIN) {
-        _data.push_back(UINT32_MAX / 2 + 1);
-    } else  if (num) {
-        _data.push_back((dig) ((num > 0) ? num : -(num)));
+big_integer::big_integer(const int32_t num) {
+    if (num == 0) {
+        _data.resize(0);
+        _sign = false;
+    } else {
+        _sign = (num < 0);
+        if (num  == INT32_MIN) {
+            _data.push_back(UINT32_MAX / 2 + 1);
+        } else {
+            _data.push_back((dig) ((num > 0) ? num : -(num)));
+        }
     }
+}
+
+big_integer::big_integer(const big_integer &that) {
+    _data = that._data;
+    _sign = that._sign;
 }
 
 big_integer::big_integer(dig num) : _sign(false) {
@@ -66,11 +77,13 @@ big_integer& big_integer::operator-=(const big_integer &that) {
     if (_sign == that._sign) {
         int32_t flag = _compare(that);
         if (flag == 0) {
+            _data.make_new();
             _sign = false;
             _data.resize(0);
         } else {
             if (flag < 0) {
                 big_integer tmp(that);
+                tmp._data.make_new();
                 tmp -= *this;
                 tmp._sign ^= 1;
                 std::swap(*this, tmp);
@@ -98,7 +111,7 @@ big_integer& big_integer::operator*=(const big_integer &that) {
 
     ans._delete_zero();
     ans._sign = (ans != 0) && (_sign ^ that._sign);
-    std::swap(ans, *this);
+    *this = ans;
     return (*this);
 }
 
@@ -117,6 +130,7 @@ big_integer& big_integer::operator%=(const big_integer &that) {
 
 big_integer& big_integer::operator&=(const big_integer &that) {
     big_integer ans(that);
+    _data.make_new();
     size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
@@ -133,6 +147,7 @@ big_integer& big_integer::operator&=(const big_integer &that) {
 
 big_integer& big_integer::operator|=(const big_integer &that) {
     big_integer ans(that);
+    _data.make_new();
     size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
@@ -147,6 +162,7 @@ big_integer& big_integer::operator|=(const big_integer &that) {
 
 big_integer& big_integer::operator^=(const big_integer &that) {
     big_integer ans(that);
+    _data.make_new();
     size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
@@ -217,6 +233,14 @@ big_integer operator/(big_integer a, const big_integer &b) {
 }
 
 big_integer operator+(big_integer a, const big_integer &b) {
+    for (size_t i = 0; i < a._sz(); i++) {
+        std::cout << a._data[i] << std::endl;
+    }
+    std::cout << std::endl;
+    for (size_t i = 0; i < b._sz(); i++) {
+        std::cout << b._data[i] << std::endl;
+    }
+    std::cout << std::endl;
     a += b;
     return a;
 }
@@ -288,6 +312,7 @@ std::string to_string(const big_integer &a) {
         return "0";
     }
     big_integer changeable(a);
+    changeable._data.make_new();
     std::string ans = "";
     while (!changeable.is_zero()) {
         dig remainder = 0;
@@ -304,6 +329,7 @@ bool big_integer::is_zero() const {
 }
 
 void big_integer::_delete_minus() {
+    _data.make_new();
     if (!_sign || is_zero()) {
         return;
     }
@@ -316,6 +342,7 @@ void big_integer::_delete_minus() {
 }
 
 void big_integer::_append_minus() {
+    _data.make_new();
     if (!_sign || is_zero()) {
         return;
     }

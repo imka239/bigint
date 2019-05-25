@@ -11,8 +11,8 @@
 template<typename T>
 class mega_vector {
     static const size_t max_sz = 2;
-    size_t sz;
-    size_t all_sz;
+    size_t sz = 0;
+    size_t all_sz = 0;
 
     T small[max_sz];
     shared_ptr<T> big;
@@ -29,7 +29,7 @@ class mega_vector {
     }
 
     void remake() {
-        T new_big = (T *) operator new[] (all_sz * sizeof(T));
+        T *new_big = (T *) operator new[] (all_sz * sizeof(T));
         for (size_t i = 0; i < sz; i++) {
             new(new_big + i) T (big[i]);
         }
@@ -132,7 +132,7 @@ public:
             }
         } else {
             if (max_sz < new_sz) {
-                if (big.get() != nullptr) {
+                if (big.get() == nullptr) {
                     all_sz = 4;
                     while (all_sz < new_sz) {
                         all_sz *= 2;

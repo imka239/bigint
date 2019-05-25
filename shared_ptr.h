@@ -8,7 +8,7 @@
 #include <cstddef>
 
 template <typename T>
-class shared_ptr {
+struct shared_ptr {
     struct Aux {
         explicit Aux(T *_ptr) {
             ptr = _ptr;
@@ -22,7 +22,7 @@ class shared_ptr {
     };
 
     explicit shared_ptr(T *ptr = nullptr) {
-        if (*ptr == 0) {
+        if (ptr == NULL) {
             aux = nullptr;
         } else {
             aux = new Aux(ptr);
@@ -30,13 +30,13 @@ class shared_ptr {
     }
 
     ~shared_ptr() {
-        if (!nulptr()) {
+        if (aux != nullptr) {
             subtr();
         }
     }
 
-    shared_ptr(shared_ptr& a) {
-        if (a.nulptr()) {
+    shared_ptr(const shared_ptr& a) {
+        if (a.aux == nullptr) {
             aux = nullptr;
         } else {
             aux = a.aux;
@@ -44,14 +44,14 @@ class shared_ptr {
         }
     }
 
-    shared_ptr &operator=(shared_ptr & a) {
+    shared_ptr &operator=(const shared_ptr & a) {
         if (aux == a.aux) {
             return *this;
         }
-        if (!nulptr()) {
+        if (aux != nullptr) {
             subtr();
         }
-        if (a.nulptr()) {
+        if (a.aux == nullptr) {
             aux = nullptr;
         } else {
             aux = a.aux;
@@ -61,11 +61,11 @@ class shared_ptr {
     }
 
     T *get() const {
-        return (nulptr()) ? nullptr : aux->ptr;
+        return (aux == nullptr) ? nullptr : aux->ptr;
     }
 
     void reset(T *ptr = nullptr) {
-        if (!nulptr()) {
+        if (aux != nullptr) {
             subtr();
         }
         if (ptr == nullptr) {
@@ -80,15 +80,19 @@ class shared_ptr {
     }
 
     T *operator->() const {
-        return (nulptr()) ? nullptr : aux->ptr;
+        return (aux == nullptr) ? nullptr : aux->ptr;
     }
 
-    T &operator[](size_t i) const {
-        return *(aux->ptr + i);
+    T &operator[](size_t i) {
+        return aux->ptr[i];
+    }
+
+    const T &operator[](size_t i) const {
+        return aux->ptr[i];
     }
 
     bool only() {
-        return (!nulptr() && aux->count == 1);
+        return (aux != nullptr && aux->count == 1);
     }
 
     void subtr() {
@@ -96,10 +100,6 @@ class shared_ptr {
         if (aux->count == 0) {
             delete aux;
         }
-    }
-
-    bool nulptr() {
-        return aux == nullptr;
     }
 
 private:
