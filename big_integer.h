@@ -3,13 +3,14 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 #include "mega_vector.h"
 
 using dig = uint32_t;
 
 struct big_integer {
     big_integer() = default;
-    big_integer(const big_integer & that);
+    big_integer(const big_integer & that) = default;
     big_integer(int32_t);
     big_integer(dig);
     big_integer(std::string const&);
@@ -45,6 +46,7 @@ struct big_integer {
     big_integer operator+() const;
     big_integer operator~() const;
 
+    big_integer& abstract_binary(big_integer const &, std::function<dig(dig, dig)> const &);
     big_integer& operator&=(const big_integer&);
     friend big_integer operator&(big_integer, const big_integer&);
     big_integer& operator|=(const big_integer&);
@@ -64,6 +66,7 @@ struct big_integer {
 
 private:
     mega_vector<dig> _data;
+    std::vector<dig> asdas_data;
     bool _sign = false;
 
     size_t _sz() const;

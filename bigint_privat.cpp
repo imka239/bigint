@@ -103,6 +103,7 @@ big_integer& big_integer::_div_on_dig(dig val, dig& rm) {
         carry = d % val;
         ans._data.push_back(d / val);
     }
+    //std::reverse(ans._data.begin(), ans._data.end());
     for (size_t i = 0; i < ans._sz() / 2; i++) {
         std::swap(ans._data[i], ans._data[ans._sz() - i - 1]);
     }

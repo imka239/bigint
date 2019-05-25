@@ -68,7 +68,7 @@ public:
             }
             big = that.big;
         } else {
-            /*if (big.get() == nullptr) {
+            if (big.get() == nullptr) {
                 for (size_t i = 0; i < sz; i++) {
                     small[i].~T();
                 }
@@ -76,7 +76,7 @@ public:
                 for (size_t i = 0; i < sz; i++) {
                     big[i].~T();
                 }
-            }*/
+            }
             for (size_t i = 0; i < that.sz; i++) {
                 new(small + i) T (that.small[i]);
             }
@@ -166,6 +166,7 @@ public:
             remake();
         }
     }
+
 
     T &operator[](size_t i) {
         if (big.get() == nullptr) {

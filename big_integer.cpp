@@ -3,9 +3,10 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <functional>
 
 const dig ten = 10;
-const dig ten_in_pow_eight = 100000000;
+const big_integer ten_in_pow_eight = 100000000;
 
 
 big_integer::big_integer(const int32_t num) {
@@ -20,11 +21,6 @@ big_integer::big_integer(const int32_t num) {
             _data.push_back((dig) ((num > 0) ? num : -(num)));
         }
     }
-}
-
-big_integer::big_integer(const big_integer &that) {
-    _data = that._data;
-    _sign = that._sign;
 }
 
 big_integer::big_integer(dig num) : _sign(false) {
@@ -121,6 +117,7 @@ big_integer& big_integer::operator/=(const big_integer &that) {
     return (*this);
 }
 
+
 big_integer& big_integer::operator%=(const big_integer &that) {
     big_integer remind = 0;
     _div_on_bigint(that, remind);
@@ -128,51 +125,31 @@ big_integer& big_integer::operator%=(const big_integer &that) {
     return *this;
 }
 
-big_integer& big_integer::operator&=(const big_integer &that) {
+big_integer& big_integer::abstract_binary(big_integer const & that, std::function<dig(dig, dig)> const & f) {
     big_integer ans(that);
     _data.make_new();
     size_t sz = std::max(_sz(), that._sz());
     ans._data.resize(sz); _data.resize(sz);
     _delete_minus(); ans._delete_minus();
     for (size_t i = 0; i < sz; i++) {
-        _data[i] = _data[i] & ans._data[i];
+        _data[i] = f(_data[i], ans._data[i]);
     }
-    _sign = _sign & that._sign;
+    _sign = (bool) f((dig) _sign, (dig) that._sign);
     _delete_zero();
     _append_minus();
-    return (*this);
+    return *this;
 }
 
-
+big_integer& big_integer::operator&=(const big_integer &that) {
+    return *this = abstract_binary(that, std::bit_and<>());
+}
 
 big_integer& big_integer::operator|=(const big_integer &that) {
-    big_integer ans(that);
-    _data.make_new();
-    size_t sz = std::max(_sz(), that._sz());
-    ans._data.resize(sz); _data.resize(sz);
-    _delete_minus(); ans._delete_minus();
-    for (size_t i = 0; i < sz; i++) {
-        _data[i] = _data[i] | ans._data[i];
-    }
-    _sign = _sign | that._sign;
-    _delete_zero();
-    _append_minus();
-    return (*this);
+    return *this = abstract_binary(that, std::bit_or<>());
 }
 
 big_integer& big_integer::operator^=(const big_integer &that) {
-    big_integer ans(that);
-    _data.make_new();
-    size_t sz = std::max(_sz(), that._sz());
-    ans._data.resize(sz); _data.resize(sz);
-    _delete_minus(); ans._delete_minus();
-    for (size_t i = 0; i < sz; i++) {
-        _data[i] = _data[i] ^ ans._data[i];
-    }
-    _sign = _sign ^ that._sign;
-    _delete_zero();
-    _append_minus();
-    return (*this);
+    return *this = abstract_binary(that, std::bit_xor<>());
 }
 
 big_integer& big_integer::operator<<=(size_t sz) {
@@ -233,14 +210,6 @@ big_integer operator/(big_integer a, const big_integer &b) {
 }
 
 big_integer operator+(big_integer a, const big_integer &b) {
-    for (size_t i = 0; i < a._sz(); i++) {
-        std::cout << a._data[i] << std::endl;
-    }
-    std::cout << std::endl;
-    for (size_t i = 0; i < b._sz(); i++) {
-        std::cout << b._data[i] << std::endl;
-    }
-    std::cout << std::endl;
     a += b;
     return a;
 }

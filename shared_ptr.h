@@ -22,7 +22,7 @@ struct shared_ptr {
     };
 
     explicit shared_ptr(T *ptr = nullptr) {
-        if (ptr == NULL) {
+        if (ptr == nullptr) {
             aux = nullptr;
         } else {
             aux = new Aux(ptr);
